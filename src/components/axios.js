@@ -7,6 +7,9 @@ const shopAPI = {
   async get() {
     return axios.get(ENDPOINT);
   },
+  async post(item) {
+    return axios.post(ENDPOINT, item);
+  },
 };
 
 export default shopAPI;

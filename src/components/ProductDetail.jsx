@@ -1,29 +1,41 @@
 import React from 'react';
-import { store } from './store';
+
 import { Link } from 'react-router-dom';
 
-const ProductDetail = (params) => {
-  const item = store.find((item) => item.id * 1 === params.match.params.id * 1);
-
+const ProductDetail = ({ item }) => {
   if (!item) return <h2>Loading...</h2>;
 
   return (
-    <div className="ui items">
-      <div className="item">
-        <div className="ui small image">
-          <img src={item.imageUrl} alt={item.title} />
+    <div className="container ui">
+      <img
+        className="ui fluid image"
+        style={{ maxWidth: '500px' }}
+        src={item.img}
+        alt={item.desc}
+      />
+      <div className="ui horizontal segments">
+        <div className="ui segment">
+          <h3>{item.name}</h3>
         </div>
-        <div className="content">
-          <div className="header">{item.title}</div>
-          <div className="meta">
-            <div className="price">{`$${item.price}`}</div>
-            <div className="stay">{`Size: ${item.size}`}</div>
-          </div>
-          <Link to="/products" className="ui floated primary button">
-            Back
-          </Link>
+        <div className="ui segment">
+          <h4>${item.price}</h4>
         </div>
       </div>
+      <div className="ui segment">
+        <p>{item.desc}</p>
+      </div>
+
+      <div className="ui green horizontal label">{item.adjective1}</div>
+      <div className="ui yellow horizontal label">{item.adjective2}</div>
+      <div className="ui blue horizontal label">{item.adjective3}</div>
+
+      <div className="ui divided selection list">
+        <a className="item">Material: {item.material}</a>
+        <a className="item">Manufacturer: {item.manufacturer}</a>
+      </div>
+      <Link to="/products" className="ui floated primary button">
+        Back
+      </Link>
     </div>
   );
 };

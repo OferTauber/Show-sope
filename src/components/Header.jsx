@@ -27,6 +27,13 @@ class Header extends Component {
         >
           Products
         </Link>
+        <Link
+          to="/add"
+          className={`${this.state.attiveButton === 'add' && 'active'} item`}
+          onClick={() => this.onBtnClick('add')}
+        >
+          Add New Item
+        </Link>
       </div>
     );
   }
