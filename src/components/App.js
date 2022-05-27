@@ -15,7 +15,11 @@ class App extends Component {
     currentItem: {},
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  async fetchData() {
     this.setState({ spinner: true });
     try {
       const fechedData = await shopAPI.get();
@@ -24,6 +28,10 @@ class App extends Component {
       console.warn(err);
     }
   }
+
+  onNewAddedItem = () => {
+    this.fetchData();
+  };
 
   onItemSelect = (item) => {
     this.setState({ currentItem: item });
@@ -51,9 +59,18 @@ class App extends Component {
               <Route
                 exact
                 path="/products/:id"
-                render={() => <ProductDetail item={currentItem} />}
+                render={() => (
+                  <ProductDetail
+                    item={currentItem}
+                    refetchData={this.onNewAddedItem}
+                  />
+                )}
               />
-              <Route exact path="/add" render={() => <Add />} />
+              <Route
+                exact
+                path="/add"
+                render={() => <Add refetchData={this.onNewAddedItem} />}
+              />
             </div>
           )}
         </BrowserRouter>

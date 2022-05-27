@@ -11,7 +11,7 @@ class Products extends Component {
       return (
         <Link
           className="card"
-          // to={`/products/${item.id}`}
+          to={`/products/${item.id}`}
           key={item.id}
           item={item}
           onClick={() => {
@@ -19,7 +19,7 @@ class Products extends Component {
           }}
         >
           <div className="image">
-            <img src={item.img} />
+            <img src={item.img} alt={item.desc} />
           </div>
           <div className="content">
             <div className="header">{item.name}</div>

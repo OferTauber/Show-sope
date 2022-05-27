@@ -10,6 +10,12 @@ const shopAPI = {
   async post(item) {
     return axios.post(ENDPOINT, item);
   },
+  async put(item) {
+    return axios.put(`${ENDPOINT}/${item.id}`, item);
+  },
+  async delete(item) {
+    return axios.delete(`${ENDPOINT}/${item.id}`);
+  },
 };
 
 export default shopAPI;

@@ -1,41 +1,39 @@
 import React, { Component } from 'react';
 import shopAPI from './axios';
 
-// import { Link } from 'react-router-dom';
-
-class Add extends Component {
+class Edit extends Component {
   state = {
     form: {
-      name: 'dfgds',
-      desc: 'ffds',
-      material: 'dfsda',
-      adjective1: 'sfg',
-      adjective2: 'adf',
-      adjective3: 'dffsda',
-      price: '12',
-      manufacturer: 'www',
-      img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Dog_-_%E0%B4%A8%E0%B4%BE%E0%B4%AF-6.JPG/800px-Dog_-_%E0%B4%A8%E0%B4%BE%E0%B4%AF-6.JPG',
+      name: '',
+      desc: '',
+      material: '',
+      adjective1: '',
+      adjective2: '',
+      adjective3: '',
+      price: '',
+      manufacturer: '',
+      img: '',
     },
+    originalForm: {},
     spinner: false,
+  };
+
+  componentDidMount() {
+    this.setState({ form: this.props.item, originalForm: this.props.item });
+  }
+
+  onCancel = () => {
+    const original = this.state.originalForm;
+    this.setState({ form: original });
+    this.props.cancel();
   };
 
   onFormSubmit = async (e) => {
     e.preventDefault();
     this.setState({ spinner: true });
     try {
-      const res = await shopAPI.post(this.state.form);
+      const res = await shopAPI.put(this.state.form);
       this.setState({
-        form: {
-          name: '',
-          desc: '',
-          material: '',
-          adjective1: '',
-          adjective2: '',
-          adjective3: '',
-          price: '',
-          manufacturer: '',
-          img: '',
-        },
         spinner: false,
       });
       void res;
@@ -66,7 +64,7 @@ class Add extends Component {
     } = { ...this.state.form };
     return (
       <div className="container">
-        <h2>Add new item details</h2>
+        <h2>Edit item details</h2>
         <form
           className={`ui ${this.state.spinner && 'loading'} form`}
           // className={`ui loading form`}
@@ -168,11 +166,14 @@ class Add extends Component {
               />
             </div>
           </div>
-          <button className="ui submit button">Add Item</button>
+          <button className="ui submit button green">Save Changes</button>
+          <div className="ui submit button yellow" onClick={this.onCancel}>
+            Cancel
+          </div>
         </form>
       </div>
     );
   }
 }
 
-export default Add;
+export default Edit;
