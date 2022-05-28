@@ -12,8 +12,10 @@ class ProductDetail extends Component {
     this.setState({ editMode: !temp });
   };
 
-  deleteItem = async () => {
+  deleteItem = async (item) => {
     try {
+      await shopAPI.delete(item);
+      this.props.refetchData();
     } catch (err) {
       console.warn(err);
     }
@@ -71,7 +73,11 @@ class ProductDetail extends Component {
           Edit
         </button>
 
-        <Link to="/products" className="ui floated red button">
+        <Link
+          to="/products"
+          className="ui floated red button"
+          onClick={() => this.deleteItem(item)}
+        >
           Delete
         </Link>
       </div>
@@ -80,3 +86,5 @@ class ProductDetail extends Component {
 }
 
 export default ProductDetail;
+
+// this.context.router.transitionTo(`route/${this.storeInput.value}`)

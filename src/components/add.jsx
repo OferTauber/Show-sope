@@ -6,15 +6,15 @@ import shopAPI from './axios';
 class Add extends Component {
   state = {
     form: {
-      name: 'dfgds',
-      desc: 'ffds',
-      material: 'dfsda',
-      adjective1: 'sfg',
-      adjective2: 'adf',
-      adjective3: 'dffsda',
-      price: '12',
-      manufacturer: 'www',
-      img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Dog_-_%E0%B4%A8%E0%B4%BE%E0%B4%AF-6.JPG/800px-Dog_-_%E0%B4%A8%E0%B4%BE%E0%B4%AF-6.JPG',
+      name: '',
+      desc: '',
+      material: '',
+      adjective1: '',
+      adjective2: '',
+      adjective3: '',
+      price: '',
+      manufacturer: '',
+      img: '',
     },
     spinner: false,
   };
