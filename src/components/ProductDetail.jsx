@@ -60,8 +60,8 @@ class ProductDetail extends Component {
         <div className="ui blue horizontal label">{item.adjective3}</div>
 
         <div className="ui divided selection list">
-          <a className="item">Material: {item.material}</a>
-          <a className="item">Manufacturer: {item.manufacturer}</a>
+          <div className="item">Material: {item.material}</div>
+          <div className="item">Manufacturer: {item.manufacturer}</div>
         </div>
         <Link to="/products" className="ui floated primary button">
           Back
