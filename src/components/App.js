@@ -46,8 +46,12 @@ class App extends Component {
             <Spinner />
           ) : (
             <div className="ui container">
-              <Header numOfProducts={data.length} />
-              <Route exact path="/" render={() => <Hompage />} />
+              <Header />
+              <Route
+                exact
+                path="/"
+                render={() => <Hompage numOfProducts={data.length} />}
+              />
               <Route
                 exact
                 path="/products"
